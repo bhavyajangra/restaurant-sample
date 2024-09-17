@@ -1,267 +1,59 @@
-<!doctype html>
-
-<html>
-  <head><title>a resturants website</title>
-    <meta charset="utf-8" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <link
-      rel="shortcut icon"
-      class="favicon-tab"
-      type="image/png"
-      href="/favicon.ico"
-    />
-    <style>
-      html,
-      body {
-        width: 100%;
-        height: 100%;
-        margin: 0;
-        padding: 0;
-        overflow: hidden;
-        -webkit-font-smoothing: antialiased;
-      }
-
-      #dora-root {
-        position: absolute;
-        left: 0;
-        top: 0;
-        right: 0;
-        bottom: 0;
-      }
-    </style>
-    <style>
-      #loading {
-        position: fixed;
-        width: 100%;
-        height: 100%;
-        left: 50%;
-        top: 50%;
-        transform: translate(-50%, -50%);
-        background-color: white;
-        display: flex;
-        justify-content: center;
-        align-content: center;
-        flex-wrap: wrap;
-      }
-
-      #loading img {
-        width: 58px;
-        height: 58px;
-      }
-    </style>
-    <script>
-      window.__ENV = {"RELEASE_VERSION":"0.0.0","TARGET":"online","HOME_HOST":"www.dora.run","RUN_HOST":"dora.run","PREVIEW_HOST":"preview.dora.run","SWIMLANE_HOST":"","API_HOST":"api-us.dora.run","NEO_API_HOST":"neo-api.dora.run","CDN_NEO_API_HOST":"cdn-neo-api.dora.run","STATIC_ASSETS_HOST":"cdn-static-e.dora.run","USER_ASSETS_HOST":"cdn-design-e.dora.run","CDN_IMGS_HOST":"cdn-imgs.dora.run"};
-      window.__ASSET_PREFIX = 'https://cdn-static-e.dora.run/dora_runner_web';
-      window.__ASSET_MANIFEST = {"main.dart.js":"main.dart.9efb633a.js","threed_renderer/build/editor.js.LICENSE.txt":"threed_renderer.94a71d34/build/editor.js.LICENSE.txt","threed_renderer/build/glbCompress.js":"threed_renderer.94a71d34/build/glbCompress.js","threed_renderer/build/runner.js":"threed_renderer.94a71d34/build/runner.js","threed_renderer/build/editor.js":"threed_renderer.94a71d34/build/editor.js","threed_renderer/build/chunk.bundle.js":"threed_renderer.94a71d34/build/chunk.bundle.js","threed_renderer/build/runner.js.LICENSE.txt":"threed_renderer.94a71d34/build/runner.js.LICENSE.txt","public/error_pages/not_found.html":"public/error_pages/not_found.32a93b53.html","public/previewer.css":"public/previewer.d2c4671b.css","public/loading.gif":"public/loading.6330c237.gif","public/made_in_dora/tag_icon_white.webp":"public/made_in_dora/tag_icon_white.91514bb1.webp","public/made_in_dora/ai_tag_icon_white.png":"public/made_in_dora/ai_tag_icon_white.1717c340.png","public/made_in_dora/tag_icon.png":"public/made_in_dora/tag_icon.9712852f.png","public/made_in_dora/ai_tag_icon.png":"public/made_in_dora/ai_tag_icon.74d52789.png","public/made_in_dora/ai_tag_bg.png":"public/made_in_dora/ai_tag_bg.1ad890be.png","public/previewer.js":"public/previewer.8871cfd9.js"};
-    </script>
-    <script>
-      function setCookie(name, value, days) {
-  var expires = '';
-  if (days) {
-    var date = new Date();
-    date.setTime(date.getTime() + days * 24 * 60 * 60 * 1000);
-    expires = '; expires=' + date.toUTCString();
-  }
-  let domain = '';
-  if (window.location.hostname.includes('test.dora.run')) {
-    domain = '; domain=.test.dora.run';
-  } else if (window.location.hostname.includes('prerelease.dora.run')) {
-    domain = '; domain=.prerelease.dora.run';
-  } else if (window.location.hostname.includes('dora.run')) {
-    domain = '; domain=.dora.run';
-  }
-  document.cookie =
-    name + '=' + encodeURIComponent(value) + expires + '; path=/' + domain;
-}
-
-const utmUrlParamKeys = [
-  'utm_source',
-  'utm_medium',
-  'utm_campaign',
-  'utm_content',
-  'utm_term',
-];
-
-const doraUrlParamKeys = ['coupon'];
-
-try {
-  var urlParams = new URLSearchParams(window.location.search);
-  let pscd = urlParams.get('pscd');
-  let ps_partner_key = urlParams.get('ps_partner_key');
-  let ps_xid = urlParams.get('ps_xid');
-  let gsxid = urlParams.get('gsxid');
-  let gspk = urlParams.get('gspk');
-  if (ps_partner_key && ps_xid && gsxid && gspk) {
-    setCookie('pscd', pscd, 30);
-    setCookie('ps_partner_key', ps_partner_key, 30);
-    setCookie('ps_xid', ps_xid, 30);
-    setCookie('gsxid', gsxid, 30);
-    setCookie('growSumoPartnerKey', gspk, 30);
-    setCookie('ps_mode', 'trackingV2', 30);
-  }
-  for (const key of utmUrlParamKeys) {
-    if (urlParams.has(key)) {
-      setCookie(key, urlParams.get(key), 30);
-    }
-  }
-  for (const urlParamKey of doraUrlParamKeys) {
-    const key = `dora_${urlParamKey}`;
-    const value = urlParams.get(urlParamKey);
-    if (value) setCookie(key, value, 30);
-  }
-} catch (error) {}
-
-    </script>
-    
-    
-    
-    
-    <script defer src="https://cdn-static-e.dora.run/dora_runner_web/main.dart.9efb633a.js"></script>
-  <script>window.DORA_PROJECT_PREPARATION="{\"summary\":{\"fonts\":{\"Outfit-Regular\":[\"WLhbCEbWr\",\"Wnqapfr6i\",\"WLOkfaI71\",\"Wj5i2nVbm\",\"W6WLyBYnT\",\"W73KYSvmZ\",\"W2DvhkMvB\",\"WiSr0nsmT\",\"WHDtYj3Lf\",\"WbwZf1td4\",\"WlWGu7eIK\",\"WdepL9fIr\",\"WGy1yTHUK\"],\"Lexend-SemiBold\":[\"WgGepgyUF\",\"WnauaqXkp\"],\"Outfit-Bold\":[\"W4PPywSaQ\",\"Wp7cLejf6\",\"WBL3sCYhd\",\"WubR5QYoe\",\"WQv5ao3YC\",\"WzcLszYhA\",\"WXTK6b6DX\",\"WpK2zv7Bd\",\"WSzPYEYzZ\",\"WVaNl8SIW\",\"WMTmQ2xHh\",\"WSbHV7oWy\",\"WWOQlPMks\",\"WuCBiGCRx\",\"WBXoh00Wg\",\"WIP0p4nv2\",\"WULPcqJrJ\",\"W6hvVdl2D\",\"WJ1RVOCI8\"],\"Outfit-Light\":[\"WmXARWEoW\",\"WytjQ59Ss\",\"WWm7olDLc\",\"W0JzL9Pcj\",\"Wd9wboveR\"],\"Lexend-Regular\":[\"WbKDegoqv\",\"WlqMe2tsq\",\"WRzC25Qol\",\"WWjFFNqc4\",\"WuNhy26wl\",\"W6PkR2VQD\",\"WDvHzEsiW\",\"W5vn4jdk3\",\"WpTjhbUXG\",\"WMmtEvxXS\",\"W7ebRNNg2\",\"Whbc1peh3\",\"WH3f7v600\"],\"Roboto-Regular\":[\"WnASvMiK0\"],\"Inter-Regular\":[\"CEdc1xL5C~1#root\"]},\"last_modified\":1716884580154},\"domain\":\"rt4qzazs.dora.run\",\"id\":\"1328554\",\"api\":{\"/action\":{\"version\":\"62e50c46-3901-4c7d-ad6f-a494096eae6b\"},\"/project/get\":{\"version\":\"ca0b0559-a530-48a7-a00a-655189b7590d\"},\"/meta\":{\"version\":\"2ac4ea75-9fdc-444d-be6a-527dfd993f4f\"}}}";</script><script>window.doraAppTitle="a resturants website";</script><!-- Open Graph / Facebook -->
-            <meta property="og:type" content="website">
-            <meta property="og:title" content="a resturants website">
-            <meta property="og:description" content="Made in Dora">
-            <meta property="og:image" content="https://cdn-static-e.dora.run/public/image_placeholder.png">
-            <!-- Twitter -->
-            <meta name="twitter:card" content="summary_large_image">
-            <meta name="twitter:title" content="a resturants website">
-            <meta name="twitter:description" content="Made in Dora">
-            <meta name="twitter:image" content="https://cdn-static-e.dora.run/public/image_placeholder.png">
-            </head>
-
-  <body>
-    <div id="loading"></div>
-    <div id="dora-root"></div>
-    
-    <script>
-      var loading = document.getElementById('loading');
-if (loading) {
-  loading.style.display = 'flex';
-  loading.style.zIndex = 100;
-  var queryParameters = new URLSearchParams(window.location.search);
-  var loadingUrl = window.loadingUrl || queryParameters.get('loadingUrl');
-  var loadingBg = window.loadingBg || queryParameters.get('loadingBg');
-
-  if (loadingUrl) {
-    if (loadingUrl.endsWith('.json') && bodymovin) {
-      var parentDiv = document.getElementById('loading');
-      var childDiv = document.createElement('div');
-      childDiv.id = 'lottie-container';
-      parentDiv.appendChild(childDiv);
-
-      var animation = bodymovin.loadAnimation({
-        container: document.getElementById('lottie-container'),
-        path: loadingUrl,
-        renderer: 'svg',
-      });
-    } else if (
-      loadingUrl.endsWith('.gif') ||
-      loadingUrl.endsWith('.apng') ||
-      loadingUrl.endsWith('.svg') ||
-      loadingUrl.endsWith('.png')
-    ) {
-      loading.innerHTML = `
-            <picture>
-            <img src="${loadingUrl}" alt="loading" style="opacity: 1;">
-            </picture>
-        `;
-    } else {
-    }
-  } else {
-    if (window.__ASSET_PREFIX && window.__ASSET_MANIFEST) {
-      let url = `${window.__ASSET_PREFIX}/${window.__ASSET_MANIFEST['public/loading.gif']}`;
-      loading.innerHTML = `
-        <picture>
-        <img src="${url}" alt="loading" style="opacity: 1;">
-        </picture>
-    `;
-    }
-  }
-  if (loadingBg) {
-    loading.style.backgroundColor = loadingBg;
-    loading.style.backgroundImage = loadingBg;
-  }
-
-  const hideLoading = () => (loading.style.display = 'none');
-
-  window.addEventListener('__dora_app_error', () => hideLoading());
-  window.addEventListener('__dora_app_mounted', () => hideLoading());
-}
-
-    </script>
-  <div class="seo-content" style="opacity: 0; white-space: pre; display: none;">
-<p>Elevate Your Senses with Our Signature Tasting Menu</p>
-<p>Reserve</p>
-<p>Home</p>
-<p>Plan Your Visit</p>
-<p>Indulge in Our Signature Cocktails</p>
-<p>Savor the Flavors of Our Seasonally </p>
-<p>Contact</p>
-<p>Savor the Flavors of Our Acclaimed Green Hat Café</p>
-<p>Reserve Your Table</p>
-<p>© 2024 Savour, Inc. All rights reserved.</p>
-<p>Explore the Story Behind Our Culinary Masterpieces</p>
-<p>Explore Our Inviting Atmosphere and Discover the Passion </p>
-<p>Open Daily from 11AM to 10PM, Our Restaurant Offers the Flexibility to Accommodate Your Dining Preferences</p>
-<p>Careers</p>
-<p>About Us</p>
-<p>Discover the Art of Dining at Its Finest</p>
-<p>Quick Links</p>
-<p>Explore </p>
-<p>Facebook</p>
-<p>Twitter</p>
-<p>Connect with Us</p>
-<p>Savour</p>
-<p>Events</p>
-<p>Home</p>
-<p>Indulge in Our Mouthwatering Dishes and Exceptional Service</p>
-<p>Follow Us</p>
-<p>Instagram</p>
-<p>Recognized for Our Unwavering Dedication to Culinary Innovation and Exceptional Hospitality, Our Restaurant Has Garnered </p>
-<p>Press</p>
-<p>Menu</p>
-<p>Reserve Your Table Today</p>
-<p>Discover the Perfect Pairing of Culinary Excellence and Exceptional Coffee at Our Establishment</p>
-<p>Introducing Our Flagship Restaurant: Elevating the Dining </p>
-<p>Immerse Yourself in the Vibrant Ambiance of Our </p>
-<p>Contact Us to Plan Your Dining </p>
-<p>Discover Why We're the Talk of the Town</p>
-<p>As a Proud Partner of the Prestigious Green Coffee Company, We Are Committed to Sourcing the Finest, Ethically Grown Coffee Beans to Complement Our Exceptional Dining Experience</p>
-<p>Sourcing the Finest Ingredients</p>
-<p>Sustainability</p>
-<p>Get in Touch</p>
-<p>Explore Our Specialty Dishes</p>
-<p>Menu</p>
-<p>At the Heart of Our Culinary Philosophy Lies a Dedication to Sourcing the Finest, Locally Grown Ingredients, and Crafting Innovative Dishes That Celebrate the Unique Flavors of the Region. We Invite You to Embark on a Gastronomic Journey with Us, Where Every Bite Tells a Story of Passion</p>
-<p>Delight Your Senses with Our Visually Stunning and </p>
-<p>Contact Us</p>
-<p>Order Now</p>
-<p>Conveniently Located in the Heart of the City, Our Restaurant Promises an Unforgettable Dining Experience. Surrounded by Vibrant Energy and Stunning </p>
-<p>Reserve Your Spot</p>
-<p>Discover the Inspiration </p>
-<p>Savor the Freshness</p>
-<p>Follow Us on Instagram for a Glimpse into the Culinary Artistry and </p>
-<p>Our Company</p>
-<p>Contact</p>
-<p>About Us</p>
-<p>About</p>
-<p>Discover the Culinary Delight at Our Renowned Restaurant</p>
-<p>Experience the Allure of Our Signature Restaurant Brand</p>
-<p>Explore Our Menu</p>
-<p>Inspired by Local Flavors</p>
-<p>LinkedIn</p>
-<p>Book Your Table</p>
-<p>Our </p>
-<p>Delight Your Palate with Our Seasonal, Farm-to-Table Offerings</p>
-<p>Elevate Your Senses with Our Exquisite Wine Selection</p>
-<p>Our Guests' Exceptional Dining Experiences Are the Cornerstone of Our Commitment to Excellence</p>
-<p>Elevate Your Dining Experience with Our Carefully Curated </p>
-<p>Book Your Table Now</p>
-<p>Our Commitment to You</p>
-<p>Indulge in a Sweet Treat from Our Artisanal Pastry Selection</p>
-<p>Taste the Difference</p>
-<p>Discover New Flavors</p>
-
-</div></body>
+<!-- index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Restaurant Website</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <nav>
+            <ul>
+                <li><a href="#home">Home</a></li>
+                <li><a href="#menu">Menu</a></li>
+                <li><a href="#about">About</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    <main>
+        <section id="home">
+            <!-- Hero Section -->
+            <h1>Welcome to Our Restaurant</h1>
+            <p>Enjoy our delicious food and excellent service.</p>
+        </section>
+        <section id="menu">
+            <!-- Menu Section -->
+            <h2>Our Menu</h2>
+            <ul>
+                <li>
+                    <img src="dish1.jpg" alt="Dish 1">
+                    <h3>Dish 1</h3>
+                    <p> Description of Dish 1</p>
+                </li>
+                <!-- Add more menu items -->
+            </ul>
+        </section>
+        <section id="about">
+            <!-- About Section -->
+            <h2>About Us</h2>
+            <p>We are a team of passionate chefs and restaurateurs dedicated to providing excellent food and service.</p>
+        </section>
+        <section id="contact">
+            <!-- Contact Section -->
+            <h2>Get in Touch</h2>
+            <p>Contact us to make a reservation or order online.</p>
+            <form>
+                <!-- Contact Form -->
+                <input type="text" placeholder="Name">
+                <input type="email" placeholder="Email">
+                <textarea placeholder="Message"></textarea>
+                <button>Send</button>
+            </form>
+        </section>
+    </main>
+    <script src="script.js"></script>
+</body>
 </html>
